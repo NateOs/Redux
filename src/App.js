@@ -17,10 +17,19 @@ const initialStore = {
 //reducer
 const reducer = (state, action) => {
   console.log({ state, action });
+  if (action.type === "DECREASE") {
+    return { count: state.count - 1 };
+  }
   return state;
 };
 
+//store
 const store = createStore(reducer, initialStore);
+store.dispatch({ type: "DECREASE" });
+store.dispatch({ type: "DECREASE" });
+store.dispatch({ type: "DECREASE" });
+store.dispatch({ type: "DECREASE" });
+store.dispatch({ type: "DECREASE" });
 console.log(store.getState());
 
 function App() {
