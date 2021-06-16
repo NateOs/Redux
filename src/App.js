@@ -20,16 +20,26 @@ const reducer = (state, action) => {
   if (action.type === "DECREASE") {
     return { count: state.count - 1 };
   }
+
+  if (action.type === "INCREASE") {
+    return { count: state.count + 1 };
+  }
+  if (action.type === "RESET") {
+    return { count: 0 };
+  }
   return state;
 };
 
 //store
 const store = createStore(reducer, initialStore);
+// dispatching an ACTION
 store.dispatch({ type: "DECREASE" });
-store.dispatch({ type: "DECREASE" });
-store.dispatch({ type: "DECREASE" });
-store.dispatch({ type: "DECREASE" });
-store.dispatch({ type: "DECREASE" });
+
+// dispatch
+store.dispatch({ type: "INCREASE" });
+
+// dispatch
+store.dispatch({ type: "RESET" });
 console.log(store.getState());
 
 function App() {
