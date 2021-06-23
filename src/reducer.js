@@ -1,21 +1,17 @@
-
+import {
+  DECREASE,
+  INCREASE,
+  RESET,
+  CLEAR_CART,
+  GET_AMOUNT,
+  GET_TOTAL,
+  REMOVE,
+} from "./actions";
 
 //reducer
 const reducer = (state, action) => {
-  console.log({ state, action });
-  if (action.type === "DECREASE") {
-    return { ...state, count: state.count - 1 };
-  }
+  
 
-  if (action.type === "INCREASE") {
-    return { ...state, count: state.count + 1 };
-  }
-  if (action.type === "RESET") {
-    return { ...state, count: 0 };
-  }
-  if (action.type === "CHANGE NAME") {
-    return { ...state, name: "Janet" };
-  }
   return state;
 };
 
