@@ -9,37 +9,46 @@ import cartItems from "./cart-items";
 //store
 import { createStore } from "redux";
 
+// importing ACTIONS
+import { INCREASE, DECREASE,RESET } from './actions.js'
+
 //initial store
 const initialStore = {
   count: 78,
+  name: "Nathan",
 };
 
 //reducer
 const reducer = (state, action) => {
   console.log({ state, action });
   if (action.type === "DECREASE") {
-    return { count: state.count - 1 };
+    return { ...state, count: state.count - 1 };
   }
 
   if (action.type === "INCREASE") {
-    return { count: state.count + 1 };
+    return { ...state, count: state.count + 1 };
   }
   if (action.type === "RESET") {
-    return { count: 0 };
+    return { ...state, count: 0 };
+  }
+  if (action.type === "CHANGE NAME") {
+    return { ...state, name: "Janet" };
   }
   return state;
 };
 
 //store
 const store = createStore(reducer, initialStore);
+
 // dispatching an ACTION
-store.dispatch({ type: "DECREASE" });
+store.dispatch({ type: DECREASE });
 
 // dispatch
-store.dispatch({ type: "INCREASE" });
+store.dispatch({ type: INCREASE });
 
 // dispatch
-store.dispatch({ type: "RESET" });
+store.dispatch({ type: RESET });
+
 console.log(store.getState());
 
 function App() {
