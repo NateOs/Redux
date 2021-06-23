@@ -14,13 +14,13 @@ import { createStore } from "redux";
 // importing ACTIONS
 import reducer from "./reducer";
 
-// react-redux - Provider - wraps app, connect - used in components
+// react-redux - "Provider" - wraps app, then "connect" - used in components
 
 //initial store
 const initialStore = {
   cart: cartItems,
-  total: 0,
-  amount: 0,
+  total: 45,
+  amount: 50,
 };
 
 //store
@@ -33,7 +33,7 @@ function App() {
     // Wrapping our entire app with Provider
     <Provider store={store}>
       <Navbar />
-      <CartContainer cart={cartItems} />
+      <CartContainer />
     </Provider>
   );
 }
