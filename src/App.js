@@ -6,11 +6,15 @@ import CartContainer from "./components/CartContainer";
 import cartItems from "./cart-items";
 // redux stuff
 
+import { Provider } from "react-redux";
+
 //store
 import { createStore } from "redux";
 
 // importing ACTIONS
 import reducer from "./reducer";
+
+// react-redux - Provider - wraps app, connect - used in components
 
 //initial store
 const initialStore = {
@@ -26,10 +30,11 @@ function App() {
   // cart setup
 
   return (
-    <main>
+    // Wrapping our entire app with Provider
+    <Provider store={store}>
       <Navbar />
       <CartContainer cart={cartItems} />
-    </main>
+    </Provider>
   );
 }
 
