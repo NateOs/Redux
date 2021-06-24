@@ -31,7 +31,13 @@ const reducer = (state, action) => {
     console.log("TOTAL");
   }
   if (action.type === REMOVE) {
-    console.log("REMOVE");
+    // console.log("REMOVE");
+    // console.log(action.payload.id);
+
+    return {
+      ...state,
+      cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
+    };
   }
 
   return state;

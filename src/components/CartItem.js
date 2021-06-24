@@ -10,7 +10,9 @@ const CartItem = ({ img, title, price, amount, remove }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button onClick={() => remove() } className="remove-btn">remove</button>
+        <button onClick={() => remove()} className="remove-btn">
+          remove
+        </button>
       </div>
       <div>
         {/* increase amount */}
@@ -40,10 +42,10 @@ const CartItem = ({ img, title, price, amount, remove }) => {
 //   return { cart };
 // };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    remove: () => dispatch({ type: REMOVE }),
-  };
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { id } = ownProps;
+  console.log(ownProps);
+  return { remove: () => dispatch({ type: REMOVE, payload: { id } }) };
 };
 
 export default connect(null, mapDispatchToProps)(CartItem);
