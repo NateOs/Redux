@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { CLEAR_CART } from "../actions";
 
 const CartContainer = ({ cart, total, dispatch }) => {
-
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -36,7 +35,9 @@ const CartContainer = ({ cart, total, dispatch }) => {
             total <span>${total}.00</span>
           </h4>
         </div>
-        <button onClick={() => dispatch({type: CLEAR_CART})} className="btn clear-btn">
+        <button
+          onClick={() => dispatch({ type: CLEAR_CART })}
+          className="btn clear-btn">
           clear cart
         </button>
       </footer>

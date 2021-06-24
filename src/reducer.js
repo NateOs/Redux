@@ -15,6 +15,25 @@ const reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
   }
+  if (action.type === DECREASE) {
+    console.log("you decreased");
+  }
+  if (action.type === INCREASE) {
+    console.log("you increased");
+  }
+  if (action.type === RESET) {
+    console.log("you RESET");
+  }
+  if (action.type === GET_AMOUNT) {
+    console.log("AMOUNT");
+  }
+  if (action.type === GET_TOTAL) {
+    console.log("TOTAL");
+  }
+  if (action.type === REMOVE) {
+    console.log("REMOVE");
+  }
+
   return state;
 
   // USING SWITCH SYNTAX
