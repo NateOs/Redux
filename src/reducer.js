@@ -19,7 +19,17 @@ const reducer = (state, action) => {
     console.log("you decreased");
   }
   if (action.type === INCREASE) {
-    console.log("you increased");
+    console.log("you inc");
+    // find item
+    // increase item amount
+    // return item on newCart
+    const newCartItem = state.cart.map((cartItem) => {
+      if (cartItem.id === action.payload.id) {
+        return { ...cartItem, amount: cartItem.amount + 1 };
+      }
+      return cartItem;
+    });
+    return { ...state, cart: newCartItem };
   }
   if (action.type === RESET) {
     console.log("you RESET");
