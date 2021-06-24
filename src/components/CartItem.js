@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  INCREASE,
-  DECREASE,
-  RESET,
-  GET_AMOUNT,
-  GET_TOTAL,
-  REMOVE,
-} from "../actions";
+import { INCREASE, DECREASE, REMOVE } from "../actions";
 import { connect } from "react-redux";
 
-const CartItem = ({ img, title, price, amount, dispatch }) => {
+const CartItem = ({ img, title, price, amount, remove }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -17,17 +10,11 @@ const CartItem = ({ img, title, price, amount, dispatch }) => {
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
         {/* remove button */}
-        <button
-          onClick={() => dispatch({ type: REMOVE })}
-          className="remove-btn">
-          remove
-        </button>
+        <button onClick={() => remove() } className="remove-btn">remove</button>
       </div>
       <div>
         {/* increase amount */}
-        <button
-          onClick={() => dispatch({ type: INCREASE })}
-          className="amount-btn">
+        <button className="amount-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z" />
           </svg>
@@ -35,9 +22,7 @@ const CartItem = ({ img, title, price, amount, dispatch }) => {
         {/* amount */}
         <p className="amount">{amount}</p>
         {/* decrease amount */}
-        <button
-          onClick={() => dispatch({ type: DECREASE })}
-          className="amount-btn">
+        <button className="amount-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
@@ -49,9 +34,16 @@ const CartItem = ({ img, title, price, amount, dispatch }) => {
 
 // export default CartItem;
 
-const mapStateToProps = (store) => {
-  const { cart } = store;
-  return { cart };
+// this is commented out because no need to mapStateToProps as we are receiving the props from the parentComponent CartContainer.
+// const mapStateToProps = (store) => {
+//   const { cart } = store;
+//   return { cart };
+// };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    remove: () => dispatch({ type: REMOVE }),
+  };
 };
 
-export default connect(mapStateToProps)(CartItem);
+export default connect(null, mapDispatchToProps)(CartItem);
