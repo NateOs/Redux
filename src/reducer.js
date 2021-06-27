@@ -16,13 +16,20 @@ const reducer = (state, action) => {
     return { ...state, cart: [] };
   }
   if (action.type === DECREASE) {
-    console.log("you decreased");
+    let tempCart = [];
+    if (action.payload.amount === 1) {
+      tempCart = state.cart.filter((cartItem) => cartItem.id !== action.payload.id)
+    } else {
+      tempCart = state.cart.map((cartItem) => {
+        if (cartItem.id === action.payload.id) {
+          cartItem = { ...cartItem, amount: cartItem.amount - 1 };
+        }
+        return cartItem;
+      });
+    }
+    return { ...state, cart: tempCart };
   }
   if (action.type === INCREASE) {
-    console.log("you inc");
-    // find item
-    // increase item amount
-    // return item on newCart
     const newCartItem = state.cart.map((cartItem) => {
       if (cartItem.id === action.payload.id) {
         return { ...cartItem, amount: cartItem.amount + 1 };
@@ -41,9 +48,6 @@ const reducer = (state, action) => {
     console.log("TOTAL");
   }
   if (action.type === REMOVE) {
-    // console.log("REMOVE");
-    // console.log(action.payload.id);
-
     return {
       ...state,
       cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
