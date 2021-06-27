@@ -3,9 +3,9 @@ import {
   INCREASE,
   RESET,
   CLEAR_CART,
-  GET_AMOUNT,
-  GET_TOTAL,
+  GET_TOTALS,
   REMOVE,
+  TOGGLE_AMOUNT,
 } from "./actions";
 
 //reducer
@@ -18,7 +18,9 @@ const reducer = (state, action) => {
   if (action.type === DECREASE) {
     let tempCart = [];
     if (action.payload.amount === 1) {
-      tempCart = state.cart.filter((cartItem) => cartItem.id !== action.payload.id)
+      tempCart = state.cart.filter(
+        (cartItem) => cartItem.id !== action.payload.id
+      );
     } else {
       tempCart = state.cart.map((cartItem) => {
         if (cartItem.id === action.payload.id) {
@@ -41,11 +43,26 @@ const reducer = (state, action) => {
   if (action.type === RESET) {
     console.log("you RESET");
   }
-  if (action.type === GET_AMOUNT) {
+  if (action.type === TOGGLE_AMOUNT) {
     console.log("AMOUNT");
   }
-  if (action.type === GET_TOTAL) {
-    console.log("TOTAL");
+  if (action.type === GET_TOTALS) {
+    let { total, amount } = state.cart.reduce(
+      (cartTotal, cartItem) => {
+        const { price, amount } = cartItem;
+        const itemTotal = price * amount;
+
+        cartTotal.total += itemTotal
+        cartTotal.amount += amount;
+        
+        return cartTotal;
+      },
+      {
+        total: 0,
+        amount: 0,
+      }
+    );
+    return { ...state, total, amount };
   }
   if (action.type === REMOVE) {
     return {
