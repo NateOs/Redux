@@ -16,9 +16,11 @@ import reducer from "./reducer";
 
 // react-redux - "Provider" - wraps app, then "connect" - used in components
 
-
 //store
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 function App() {
   // cart setup
