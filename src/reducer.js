@@ -7,9 +7,18 @@ import {
   REMOVE,
   TOGGLE_AMOUNT,
 } from "./actions";
+import cartItems from "./cart-items";
+
+//initial store
+const initialStore = {
+  cart: cartItems,
+  total: 0,
+  amount: 0,
+};
+
 
 //reducer
-const reducer = (state, action) => {
+const reducer = (state = initialStore, action) => {
   // USING IF
 
   if (action.type === CLEAR_CART) {
@@ -54,7 +63,7 @@ const reducer = (state, action) => {
 
         cartTotal.total += itemTotal
         cartTotal.amount += amount;
-        
+
         return cartTotal;
       },
       {
