@@ -1,5 +1,5 @@
 import React from "react";
-import { INCREASE, DECREASE, REMOVE } from "../actions";
+import { INCREASE, DECREASE, REMOVE, removeItem } from "../actions";
 import { connect } from "react-redux";
 
 const CartItem = ({
@@ -54,7 +54,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { id, amount } = ownProps;
   console.log(ownProps);
   return {
-    remove: () => dispatch({ type: REMOVE, payload: { id } }),
+    // an action creator implemented
+    remove: () => dispatch(removeItem(id)),
     increase: () => dispatch({ type: INCREASE, payload: { id, amount } }),
     decrease: () => dispatch({ type: DECREASE, payload: { id, amount } }),
   };
